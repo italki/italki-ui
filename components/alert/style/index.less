@@ -1,0 +1,94 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@alert-prefix-cls: ~'@{ant-prefix}-alert';
+
+.@{alert-prefix-cls} {
+  position: relative;
+  padding: 12px 16px 12px 56px;
+  min-height: 48px;
+  word-wrap: break-word;
+  border-radius: @border-radius-base;
+
+  &-rtl {
+    padding: 12px 56px 12px 16px;
+    direction: rtl;
+  }
+
+  &&-no-icon {
+    padding: 12px 16px;
+  }
+
+  &-icon {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+
+    .@{alert-prefix-cls}-rtl & {
+      right: 16px;
+      left: auto;
+    }
+  }
+
+  &-description {
+    display: none;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8c8c8c;
+  }
+
+  &-success {
+    background-color: @alert-success-bg-color;
+  }
+
+  &-info {
+    background-color: @alert-info-bg-color;
+  }
+
+  &-warning {
+    background-color: @alert-warning-bg-color;
+  }
+
+  &-error {
+    background-color: @alert-error-bg-color;
+  }
+
+  &-with-description {
+    position: relative;
+    padding: 12px 16px 12px 64px;
+    color: @alert-text-color;
+    line-height: @line-height-base;
+    border-radius: @border-radius-base;
+
+    .@{alert-prefix-cls}-rtl& {
+      padding: 12px 64px 12px 16px;
+    }
+  }
+
+  &-with-description&-no-icon {
+    padding: 12px 16px;
+  }
+
+  &-with-description &-icon {
+    position: absolute;
+  }
+
+  &-with-description &-message {
+    display: block;
+    margin-bottom: 4px;
+    color: #333333;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &-message {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 18px;
+    color: #8c8c8c;
+  }
+
+  &-with-description &-description {
+    display: block;
+  }
+}

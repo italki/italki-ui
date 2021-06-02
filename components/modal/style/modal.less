@@ -1,0 +1,246 @@
+@dialog-prefix-cls: ~'@{ant-prefix}-modal';
+@table-prefix-cls: ~'@{ant-prefix}-table';
+@dialog-wrap-rtl-cls: ~'@{dialog-prefix-cls}-wrap-rtl';
+
+.@{dialog-prefix-cls} {
+  .reset-component;
+
+  position: relative;
+  top: 100px;
+  width: 520px;
+  margin: 0 auto;
+  padding-bottom: 24px;
+  pointer-events: none;
+
+  &-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: @zindex-modal;
+    overflow: auto;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+
+    &-rtl {
+      direction: rtl;
+    }
+  }
+
+  &-title {
+    margin: 0;
+    color: @modal-heading-color;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    word-wrap: break-word;
+  }
+
+  &-content {
+    position: relative;
+    background-color: @modal-content-bg;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: @border-radius-base;
+    box-shadow: @shadow-2;
+    pointer-events: auto;
+  }
+
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: @zindex-popup-close;
+    padding: 0;
+    color: @text-color-secondary;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+
+    .@{dialog-wrap-rtl-cls} & {
+      right: initial;
+      left: 0;
+    }
+
+    &-x {
+      display: flex;
+      padding: 0 24px 0 16px;
+      height: 55px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &-header {
+    padding: 16px 24px;
+    color: @text-color;
+    background: @modal-header-bg;
+    border-bottom: @border-width-base @border-style-base @modal-header-border-color-split;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+
+  &-body {
+    padding: 16px 24px;
+    font-size: 16px;
+    line-height: 24px;
+    word-wrap: break-word;
+  }
+
+  &-footer {
+    padding: @modal-footer-padding-vertical 24px;
+    text-align: right;
+    background: @modal-footer-bg;
+    border-top: @border-width-base @border-style-base @modal-footer-border-color-split;
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+
+    .@{dialog-wrap-rtl-cls} & {
+      text-align: left;
+    }
+    button + button {
+      margin-bottom: 0;
+      margin-left: 8px;
+
+      .@{dialog-wrap-rtl-cls} & {
+        margin-right: 8px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &-footer-noDivider {
+    .@{dialog-prefix-cls}-footer {
+      border-top: 0;
+    }
+  }
+
+  &-no-footer {
+    .@{dialog-prefix-cls}-body {
+      padding-bottom: 32px;
+    }
+  }
+  &-no-title {
+    .@{dialog-prefix-cls}-body {
+      padding-top: 48px;
+    }
+  }
+  &-no-titleAndFooter {
+    .@{dialog-prefix-cls}-body {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+  }
+
+  &.zoom-enter,
+  &.zoom-appear {
+    transform: none; // reset scale avoid mousePosition bug
+    opacity: 0;
+    animation-duration: @animation-duration-slow;
+    user-select: none; // https://github.com/ant-design/ant-design/issues/11777
+  }
+
+  &-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: @zindex-modal-mask;
+    height: 100%;
+    background-color: @modal-mask-bg;
+    filter: ~'alpha(opacity=50)';
+
+    &-hidden {
+      display: none;
+    }
+  }
+
+  &-open {
+    overflow: hidden;
+  }
+}
+
+.@{dialog-prefix-cls}-fullscreen {
+  .@{dialog-prefix-cls} {
+    top: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+  }
+  .@{dialog-prefix-cls}-content {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+  }
+  .@{dialog-prefix-cls}-header {
+    flex: 0 0 auto;
+  }
+  .@{dialog-prefix-cls}-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+  }
+  .@{dialog-prefix-cls}-footer {
+    flex: 0 0 auto;
+  }
+}
+
+.@{dialog-prefix-cls}-centered {
+  text-align: center;
+  &::before {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+  }
+  .@{dialog-prefix-cls} {
+    top: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+
+    .@{dialog-wrap-rtl-cls}& {
+      text-align: right;
+    }
+  }
+}
+
+@media (max-width: @screen-sm-max) {
+  .@{dialog-prefix-cls} {
+    max-width: calc(100vw - 16px);
+    margin: 8px auto;
+  }
+  .@{dialog-prefix-cls}-centered {
+    .@{dialog-prefix-cls} {
+      flex: 1;
+    }
+  }
+  .@{dialog-prefix-cls}-responsive {
+    .@{dialog-prefix-cls} {
+      top: auto;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+    .@{dialog-prefix-cls}-content {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .@{dialog-prefix-cls}-header {
+      flex: 0 0 auto;
+    }
+    .@{dialog-prefix-cls}-body {
+      flex: 1 1 auto;
+      overflow-y: auto;
+    }
+    .@{dialog-prefix-cls}-footer {
+      flex: 0 0 auto;
+    }
+  }
+}

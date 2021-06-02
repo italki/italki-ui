@@ -1,0 +1,64 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@selection-prefix-cls: ~'@{ant-prefix}-selection';
+
+.@{selection-prefix-cls} {
+  .reset-component;
+
+  background: @selection-default-bg;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s @ease-in-out-circ;
+
+  &-item {
+    padding: 20px;
+    // font-size: @font-size-lg;
+    border: @border-width-base @border-style-base @border-color-base;
+    &-small {
+      padding: 12px 16px;
+      font-size: @font-size-base;
+    }
+    &-checked {
+      background: #f2fcfc;
+      border-color: @primary-color;
+    }
+    &:hover {
+      border-color: @primary-color;
+    }
+    &[disabled] {
+      background: #f7f7fa;
+      color: @border-color-base;
+      cursor: default;
+      &:hover {
+        border-color: @border-color-base;
+      }
+    }
+  }
+
+  &-button {
+    display: inline-block;
+    // height: 32px;
+    padding: 5px 8px;
+    &-small {
+      // height: 24px;
+      padding: 3px 8px;
+      font-size: @font-size-sm;
+    }
+    &-checked {
+      color: @primary-color;
+      background: #f2fcfc;
+      border: @border-width-base @border-style-base @primary-color;
+    }
+
+    &:not([disabled]) {
+      &:hover {
+        color: @primary-color;
+      }
+    }
+    &[disabled] {
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+}

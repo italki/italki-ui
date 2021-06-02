@@ -1,0 +1,36 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@popup-prefix-cls: ~'@{ant-prefix}-popup';
+
+.@{popup-prefix-cls} {
+  .reset-component;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: @zindex-popover;
+  font-weight: normal;
+  white-space: normal;
+  text-align: left;
+  cursor: auto;
+  user-select: text;
+  background: #ffffff;
+  box-shadow: 0px 5px 25px rgba(0, 40, 117, 0.1);
+  border-radius: 4px;
+
+  &::after {
+    position: absolute;
+    background: fade(@white, 1%);
+    content: '';
+  }
+
+  &-rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
+  &-hidden {
+    display: none;
+  }
+}

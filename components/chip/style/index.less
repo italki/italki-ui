@@ -1,0 +1,50 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@chip-prefix-cls: ~'@{ant-prefix}-chip';
+
+.@{chip-prefix-cls} {
+  .reset-component;
+
+  display: inline-block;
+  text-align: center;
+  min-width: 88px;
+  height: 40px;
+  padding: 9px 16px;
+  font-size: @chip-font-size;
+  line-height: 20px;
+  white-space: nowrap;
+  background: @chip-default-bg;
+  border: @border-width-base @border-style-base @border-color-base;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s @ease-in-out-circ;
+
+  &-small {
+    height: 32px;
+    padding: 5px 16px;
+    min-width: 64px;
+  }
+
+  &:hover {
+    border: @border-width-base @border-style-base @primary-color;
+  }
+
+  &,
+  a,
+  a:hover {
+    color: @chip-default-color;
+  }
+
+  > a:first-child:last-child {
+    display: inline-block;
+    margin: 0 -8px;
+    padding: 0 8px;
+  }
+
+  &-checked {
+    color: @primary-color;
+    background: #f2fcfc;
+    border: @border-width-base @border-style-base @primary-color;
+  }
+}
