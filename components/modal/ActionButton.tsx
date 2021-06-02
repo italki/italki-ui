@@ -28,7 +28,7 @@ export default class ActionButton extends React.Component<ActionButtonProps, Act
   componentDidMount() {
     if (this.props.autoFocus) {
       const $this = ReactDOM.findDOMNode(this) as HTMLInputElement;
-      this.timeoutId = setTimeout(() => $this.focus());
+      this.timeoutId = window.setTimeout(() => $this.focus());
     }
   }
 
