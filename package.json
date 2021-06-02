@@ -236,9 +236,6 @@
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0"
   },
-  "publishConfig": {
-    "registry": "https://nexus.italki.com/repository/npm-releases"
-  },
   "bundlesize": [
     {
       "path": "./dist/antd.min.js",
